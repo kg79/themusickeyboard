@@ -1,0 +1,369 @@
+<!doctype html>
+<html>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <style>
+            :root {
+                --colour:#03c9a8;
+            }
+            body {
+                margin:0;
+            }
+            main {
+                height:100vh;
+            } #top {
+                background:var(--colour);
+                height:20vh;
+                display:flex;
+                justify-content:space-around;
+            } #bottom {
+                background:var(--colour);
+                height:80vh;
+                display:grid;
+                grid-template-columns:auto auto auto;
+            } article {
+                background:white;
+                border:solid 2px black;
+                width:20vw;
+                margin:auto;
+            } div {
+                border:solid black 2px;
+            } .controls {
+                text-align:center;
+            } input {
+                width:4em;
+            } #harmonicsInside {
+                display:grid;
+                grid-template-columns:auto auto;
+                overflow:scroll;
+                height:16vh;
+            } .harmonics {  
+                border:solid .05em black;
+                background:white;
+            } #generator {
+                width:12em;
+            } .selection {
+                background:white;
+                height:3em;
+                border:.05em solid black;
+                display:flex;
+                justify-content:space-around;
+                align-items:center;
+            } .tiles {
+                text-align:center;
+                user-select:none;
+            } #rootSection, #volumeBox, #waveBox, #selectBox {
+                height:1.5em;
+            } .fractions {
+                user-select:none;
+            } .decimals {
+                user-select:none;
+            } .values {
+                user-select:none;
+            } #eq {
+                display:flex;
+                flex-direction:column;
+                justify-content:space-evenly;
+            }
+        </style>
+    </head>
+    <body>
+    <main>
+
+        <section id='top'>
+
+            <div class='controls' id='generator'>
+                range: <input type='number' id='range' value='10'>
+                <button onclick='harmonicsGenerator()'>generate</button>
+                <section id='harmonicsInside'></section>    
+            </div>
+
+            <div class='controls' id='eq'>
+
+                <section class='selection' id='selectBox'>
+                    selection:
+                    <section id='selectedRatio'></section>
+                </section>
+
+                <section class='selection' id='rootSection'>
+                    root:<input id='root' type='number' value='432'>
+                </section>
+
+                <section class='selection' id='volumeBox'>
+                    vol: <input id='volume' type='range' step='1' min='0' max='10' value='2'>
+                </section>
+
+                <section class='selection' id='waveBox'>
+                        <select id='wave'>
+                                <option value="sine">sine</option>
+                                <option value="square">square</option>
+                                <option value="triangle">triangle</option>
+                                <option value="sawtooth">sawtooth</option>
+                        </select>
+                </section>
+
+            </div>
+
+        </section>
+
+        <section id='bottom'>
+            <% for (let i = 0; i < 9; i++) { %>
+            <article class='tiles' data-index='<%= i %>'>
+                <div class='fractions'>&nbsp;</div>
+                <div class='decimals'>&nbsp;</div>
+                <div class='values'>&nbsp;</div>
+            </article>
+            <% } %>
+        </section>
+    </main>
+    </body>
+    <script>
+    const volume = document.getElementById('volume');
+    const wave = document.getElementById('wave');
+
+    let atx;
+    window.onclick = () => atx = new AudioContext();
+
+    const fractions = document.getElementsByClassName('fractions');
+    const decimals = document.getElementsByClassName('decimals');
+    const values = document.getElementsByClassName('values');
+
+    const tiles = document.getElementsByClassName('tiles');
+
+
+class Music {
+    constructor(name, volume, index) {
+	this.name = name;
+	this.volume = volume;
+	this.index = index;
+    }
+    on() {
+        this.name = atx.createOscillator();
+        this.volume = atx.createGain();
+        this.name.frequency.value = root.value* eval(fractions[this.index].textContent);
+        this.volume.gain.value = volume.value/10;
+        this.name.type = wave.value;
+        this.name.connect(this.volume).connect(atx.destination);
+        this.name.start(0);
+            tiles[this.index].style.border = 'solid red .1em';
+    }
+    off() {
+	this.name.stop(0);
+	    tiles[this.index].style.border = 'solid black .1em';
+    }
+}
+
+let name0, name1, name2, name3, name4, name5, name6, name7, name8, name9, name10, name11, name12, name13, name14, name15, name16, name17, name18, name19, name20, name21, name22, name23, name24, name25, name26, name27, name28, name29, name30;
+let volume0, volume1, volume2, volume3, volume4, volume5, volume6, volume7, volume8, volume9, volume10, volume11, volume12, volume13, volume14, volume15, volume16, volume17, volume18, volume19, volume20, volume21, volume22, volume23, volume24, volume25, volume26, volume27, volume28, volume29, volume30;
+
+let notes = [
+    new Music(name0, volume0, 0),
+    new Music(name1, volume1, 1),
+    new Music(name2, volume2, 2),
+    new Music(name3, volume3, 3),
+    new Music(name4, volume4, 4),
+    new Music(name5, volume5, 5),
+    new Music(name6, volume6, 6),
+    new Music(name7, volume7, 7),
+    new Music(name8, volume8, 8),
+    new Music(name9, volume9, 9),
+    new Music(name10, volume10, 10),
+    new Music(name11, volume11, 11),
+    new Music(name12, volume12, 12),
+    new Music(name13, volume13, 13),
+    new Music(name14, volume14, 14),
+    new Music(name15, volume15, 15),
+    new Music(name16, volume16, 16),
+    new Music(name17, volume17, 17),
+    new Music(name18, volume18, 18),
+    new Music(name19, volume19, 19),
+    new Music(name20, volume20, 20),
+    new Music(name21, volume21, 21),
+    new Music(name22, volume22, 22),
+    new Music(name23, volume23, 23),
+    new Music(name24, volume24, 24),
+    new Music(name25, volume25, 25),
+    new Music(name26, volume26, 26),
+    new Music(name27, volume27, 27),
+    new Music(name28, volume28, 28),
+    new Music(name29, volume29, 29),
+    new Music(name30, volume30, 30),
+];
+
+const bottom = document.getElementById('bottom');
+let dataIndex;
+
+let selected = false;
+
+function theSelector(e) {
+
+    e.preventDefault();
+
+        interfaceIndex = eval(e.srcElement.parentNode.getAttribute('data-index'));
+
+        fractions[interfaceIndex].innerText = selectedRatio.textContent;
+        decimals[interfaceIndex].innerText = eval(selectedRatio.textContent).toPrecision(6).replace(/0+$/, '');
+        values[interfaceIndex].innerText = (root.value* eval(selectedRatio.textContent)).toPrecision(6).replace(/0+$/, '');
+
+        selected = false;
+        bottom.removeEventListener('touchstart', theSelector);
+        bottom.addEventListener('touchstart', playNote);
+        bottom.addEventListener('touchend', stopNote);
+        
+}
+
+function playNote(e) {
+
+        dataIndex = eval(e.srcElement.parentNode.getAttribute('data-index'));
+
+        switch (dataIndex) {
+            case 0:
+                notes[0].on();
+            break;
+            case 1:
+                notes[1].on();
+            break;
+            case 2:
+                notes[2].on();
+            break;
+            case 3:
+                notes[3].on();
+            break;
+            case 4:
+                notes[4].on();
+            break;
+            case 5:
+                notes[5].on();
+            break;
+            case 6:
+                notes[6].on();
+            break;
+            case 7:
+                notes[7].on();
+            break;
+            case 8:
+                notes[8].on();
+            break;
+        }
+}
+
+function stopNote(e) {
+
+dataIndex = eval(e.srcElement.parentNode.getAttribute('data-index'));
+
+
+    switch (dataIndex) {
+        case 0:
+            notes[0].off();
+        break;
+        case 1:
+            notes[1].off();
+        break;
+        case 2:
+            notes[2].off();
+        break;
+        case 3:
+            notes[3].off();
+        break;
+        case 4:
+            notes[4].off();
+        break;
+        case 5:
+            notes[5].off();
+        break;
+        case 6:
+            notes[6].off();
+        break;
+        case 7:
+            notes[7].off();
+        break;
+        case 8:
+            notes[8].off();
+        break;
+    }
+}
+
+let ascendingPool = [];
+const harmonicsInside = document.getElementById('harmonicsInside');
+const range = document.getElementById('range');
+const harmonics = document.getElementsByClassName('harmonics');
+
+//ascending harmonics
+function harmonicsGenerator() {
+    //generate harmonics
+    let numerator = 2, denominator = 1;
+    ascendingPool.push({'fractions':'1/1','decimals':1/1});
+    for (let i = 0; i < range.value; i++) {
+	if (numerator > denominator) {
+            ascendingPool.push({'fractions':`${numerator}/${denominator}`,'decimals':numerator/denominator});
+	    denominator++;
+	}
+	if (denominator === numerator) {
+	    denominator = 1;
+	    numerator++;
+	}
+    }
+    // //bubble sort
+    let sideA, sideB;
+    for (let i = 0; i < ascendingPool.length; i++) {
+	for (let j = 1; j < ascendingPool.length; j++) {
+	    if (ascendingPool[j].decimals < ascendingPool[j-1].decimals) {
+		sideA = ascendingPool[j].decimals;
+                sideB = ascendingPool[j].fractions;
+		ascendingPool[j].decimals = ascendingPool[j-1].decimals;
+                ascendingPool[j].fractions = ascendingPool[j-1].fractions;
+		ascendingPool[j-1].decimals = sideA;
+                ascendingPool[j-1].fractions = sideB;
+	    }
+	}
+    }
+    //trim
+    for (let i = 1; i < ascendingPool.length; i++) {
+        if (ascendingPool[i].decimals === ascendingPool[i-1].decimals) {
+            while (ascendingPool[i].decimals === ascendingPool[i-1].decimals) {
+                ascendingPool.splice(i, 1);
+            }
+        }
+    }
+    //remove existing
+    while (harmonics.length) {
+        for (let i = 0; i < harmonics.length; i++) {
+            harmonics[i].parentElement.removeChild(harmonics[i])
+        }
+    }
+    
+    //create elements and render
+    let decimalNode, decimalText, fractionNode, fractionText;
+    
+    for (let i = 0; i < range.value; i++) {
+	
+        decimalNode = document.createElement(`section`);
+        decimalNode.setAttribute('class', 'harmonics')
+        decimalText = document.createTextNode(`${ascendingPool[i].decimals.toPrecision(5).replace(/0+$/, '')}`);
+        decimalNode.appendChild(decimalText);
+        harmonicsInside.appendChild(decimalNode);
+	
+	    fractionNode = document.createElement(`section`);
+        fractionNode.setAttribute('class', 'harmonics');
+        fractionText = document.createTextNode(`${ascendingPool[i].fractions}`);
+        fractionNode.appendChild(fractionText);
+        harmonicsInside.appendChild(fractionNode);
+    }
+}
+
+const selectedRatio = document.getElementById('selectedRatio');
+const root = document.getElementById('root');
+
+harmonicsInside.addEventListener('click', e => {
+    selectedRatio.innerText = e.srcElement.textContent;
+    bottom.addEventListener('touchstart', theSelector); 
+    bottom.removeEventListener('touchstart', playNote);
+    bottom.removeEventListener('touchend', stopNote);
+})
+
+
+let interfaceIndex;
+
+
+    </script>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+    <head>
+   <script src='musicTest.js'></script> 
+   <style>
+       body {
+           display:grid;
+           grid-template-columns: auto auto auto auto auto auto;
+
+       }
+     section {
+         color:white;
+         background:blue;
+         width:10vw;
+         text-align:center;
+     } 
+     article {
+         border:solid 1px black;
+     }
+   </style>
+    </head>
+    <body>
+        <% for (let i = 0; i < 6; i++) { %>
+       <section>
+           <article class='fractions'></article>
+           <article class='decimals'></article>
+           <article class='frequencies'></article>
+       </section>
+       <% } %> 
+    </body>
+    <script>
+    let atx;
+    window.onclick = e => atx = new AudioContext();
+   const fractions = document.getElementsByClassName('fractions') 
+   const decimals = document.getElementsByClassName('decimals') 
+   const frequencies = document.getElementsByClassName('frequencies') 
+   const sections = document.getElementsByTagName('section') 
+
+    document.addEventListener('DOMContentLoaded', renderInterface);
+
+    function renderInterface() {
+           for (let i = 0; i < scale.length; i++) {
+               fractions[i].innerText = scale[i];
+               decimals[i].innerText = eval(scale[i]);
+               frequencies[i].innerText = ROOT* eval(scale[i]);
+
+
+           } 
+    }
+    </script>
+</html>

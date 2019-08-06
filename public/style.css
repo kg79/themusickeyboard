@@ -1,0 +1,173 @@
+
+#heading { 
+    grid-area: header;
+    height:5em;
+    display:flex;
+    justify-content:space-around;
+} #ratio {
+    width:fit-content;
+    background:white;
+    text-align:center;
+}
+#dragonDrop {
+    width:5em;
+    margin:auto;
+}
+#ascendingOutside { 
+    grid-area: menu; 
+}
+#descendingOutside { 
+    grid-area: menu; 
+}
+#interface { 
+grid-area: main; 
+display:grid;
+grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+background:black;
+width:fit-content;
+height:100%;
+width:auto;
+}
+#footer { 
+    grid-area: footer; 
+    height:5em;
+    display:flex;
+    justify-content:flex-start;
+}
+body {
+    margin:0;
+    background:black;
+}
+#grid-container {
+display: grid;
+grid-template-areas:
+'menu header header header header header'
+'menu main main main main main'
+'menu main main main main main'
+'menu main main main main main'
+'menu main main main main main'
+'menu main main main main main'
+'menu main main main main main'
+'menu footer footer footer footer footer';
+grid-gap: 10px;
+background-color: #2196F3;
+height:89vh;
+}
+
+#grid-container > #interface {
+background-color: black ;
+} #grid-container > div {
+background-color: white;
+text-align: center;
+} 
+
+h1 {
+margin:0;
+margin:auto;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family: 'Dancing Script', cursive;
+font-size:220%;
+color:#2196F3;
+text-shadow:0px -2px white;
+height:10vh;
+width:fit-content;
+background:black;
+} 
+#top {
+    background:black;
+}
+article {
+width:5em;
+}
+.tiles {
+width:fit-content;
+display:flex;
+flex-direction:column;
+justify-content:space-around;
+margin:auto;
+height:7em;
+border:solid black .1em;
+} .keyNames {
+background:white;
+} .fractions {
+background:#2196F3;
+} .decimals {
+background:rgb(33, 243, 198);
+} .values {
+background:rgb(33, 243, 79);
+} #stairsInside {
+display:grid;
+grid-template-columns: auto auto;
+overflow:scroll;
+height:70vh;
+
+position:absolute;
+width:15vw;
+
+} #range {
+width:4em;
+} .harmonics {
+border:solid .05em black;
+} #interface {
+
+} #otherRange {
+    width:4em;
+} .descendingHarmonics {
+    border:solid .05em black;
+} .shifter {
+    background:white;
+    width:fit-content;
+} #stdPitch {
+    width:5em;
+} #volumeBox {
+    border:solid 2px black;
+} #waveType {
+    border:solid 2px black;
+} .effects {
+    margin-left:4em;
+    /*border:solid black .08em;*/
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+} .controls {
+    width:fit-content;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    align-items:center;
+} .shifter {
+    width:5em;
+} article {
+    height:2em;
+} #message {
+    visibility:hidden;
+    font-size:90%;
+    position:absolute;
+}
+.stairButton {
+    display:inline-flex;
+    
+
+
+    border:black 1px inset; 
+    font-size:83%;
+
+}
+#stairButtons {
+display:flex;
+justify-content:space-around; 
+
+}       
+#upstairsDownstairs {
+    background:pink;
+}
+#ascendingStairButton {
+    background:white;
+}
+#descendingStairButton {
+    background:white;
+}
+
+

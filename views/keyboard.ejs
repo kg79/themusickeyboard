@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+<link rel='stylesheet' href='style.css'>
+<script src='music.js'></script>
+<script src='harmonicGenerator.js'></script>
+<script src='shift.js'></script>
+    </head>
+    <body>
+    <div id='top'>
+        <h1>
+            zenofone
+        </h1>
+    </div>
+
+    <div id="grid-container">
+        <div id="heading">
+
+            <section class='controls'>
+                <label>standard pitch: </label>
+                <input type='number' id='stdPitch' value='432'>
+            </section>
+
+            <section class='controls'>
+                <label>selected ratio</label>
+                <section id='dragonDrop'>
+                </section>
+            </section>
+
+            <section class='controls'>
+                    <label>left shift at:</label>
+                    <input id='leftStartAt' class='shifter'>
+                    <button id='leftShift' onclick='leftShift()'>shift</button>
+            </section>
+
+            <section class='controls'>
+                    <label>right shift at:</label>
+                    <input id='startAt' class='shifter'>
+                    <button id='shift' onclick='shift()'>shift</button>
+            </section>
+
+        </div>
+
+
+    <div id="upstairsDownstairs">
+
+        <div id='stairButtons'>
+            <p class='stairButton' id='ascendingStairButton'>
+                Ascending
+            </p>
+            <p class='stairButton' id='descendingStairButton'>
+                Descending
+            </p>
+        </div>
+        range: <input type='number' id='range' value='120'><br/><button onclick='harmonicsGenerator()'>generate</button>
+        <section id='stairsInside'></section>    
+
+    </div>
+
+  <!-- <div id="descendingOutside" style='visibility:hidden;'>
+        range: <input type='number' id='otherRange' value='120'><br/><button onclick='descendingGenerator()'>generate</button>
+        <section id='descendingInside'></section>
+    </div> -->
+
+  <div id='interface'>
+
+    <% for (let i = 0; i < 30; i++) { %>
+      <section class='tiles' data-index='<%=i%>'>
+          <article class='keyNames'>&nbsp;</article>
+          <article class='fractions'>&nbsp;</article>
+          <article class='decimals'>&nbsp;</article>
+          <article class='values'>&nbsp;</article>
+      </section>
+      <% } %>
+  </div>  
+
+    <div id="footer">
+            <section class='effects'>
+                    volume :<br/>
+                    <input value='2' id='volume' type='range' min='0' max='10' step='1'>
+            </section>
+
+            <section class='effects'>
+                wave type:<br/>
+                <select id='wave'>
+                        <option value="sine">sine</option>
+                        <option value="square">square</option>
+                        <option value="triangle">triangle</option>
+                        <option value="sawtooth">sawtooth</option>
+                </select>
+            </section>
+
+            <section class='effects' id='info'>
+                <u id='instructions'>instructions</u>
+                <section id='message'>
+On the left hand side, choose how many harmonics to generate. Click on the desired harmonic, and then on the colored tile 
+that corresponds to that key on the keyboard. You can also make a hole in the line up by typing in the name of the key, 
+and clicking the shift button.
+                </section>
+            </section>
+    </div>
+    </div>
+
+</body>
+<script>
+
+const keyNames = document.getElementsByClassName('keyNames');
+const decimals = document.getElementsByClassName('decimals');
+const fractions = document.getElementsByClassName('fractions');
+const values = document.getElementsByClassName('values');
+const stdPitch = document.getElementById('stdPitch');
+const volume = document.getElementById('volume');
+
+const tiles = document.getElementsByClassName('tiles');
+
+const leftStartAt = document.getElementById('leftStartAt');
+
+
+let atx;
+window.onclick = () => atx = new AudioContext();
+
+document.addEventListener('DOMContentLoaded', () => {
+    for (let i = 0; i < keyCodes.length; i++) {
+	    keyNames[i].innerText = keyCodes[i].symb
+    }
+});
+
+let ascendingPool = [];
+const stairsInside = document.getElementById('stairsInside');
+const range = document.getElementById('range');
+const harmonics = document.getElementsByClassName('harmonics');
+const dragonDrop = document.getElementById('dragonDrop');
+const interface = document.getElementById('interface');
+const descendingHarmonics = document.getElementsByClassName('descendingHarmonics');
+
+
+stairsInside.onclick = e => dragonDrop.innerText = e.target.textContent;
+
+
+
+interface.onclick = e => {
+   let dataIndex = parseInt(e.target.parentNode.getAttribute('data-index'));
+   
+    if (e.srcElement.localName === 'article') {
+    fractions[dataIndex].innerText = dragonDrop.textContent;
+    decimals[dataIndex].innerText = eval(dragonDrop.textContent).toPrecision(5).replace(/0+$/, '');
+	values[dataIndex].innerText = stdPitch.value* eval(dragonDrop.textContent).toPrecision(5);
+    } 
+}
+const startAt = document.getElementById('startAt');
+stdPitch.addEventListener('change', () => {
+    for (let i = 0; i < fractions.length; i++) {
+        if (typeof eval(fractions[i].textContent) == 'number') {
+            values[i].innerText = (stdPitch.value * eval(fractions[i].textContent)).toPrecision(6)
+        }
+
+    }
+});
+
+stairsInside.addEventListener('mouseover', e => {
+    notes[30].sampleOn(e.target.textContent)
+})
+stairsInside.addEventListener('mouseout', () => {
+    notes[30].sampleOff()
+})
+
+const message = document.getElementById('message');
+const info = document.getElementById('info');
+const instructions = document.getElementById('instructions');
+
+info.onmouseover = () => {
+    message.style.visibility = 'visible'
+    instructions.style.visibility = 'hidden'
+}
+info.onmouseout = () => {
+    message.style.visibility = 'hidden';
+    instructions.style.visibility = 'visible'
+}
+const ascendingStairButton = document.getElementById('ascendingStairButton')
+const descendingStairButton = document.getElementById('descendingStairButton')
+
+let ascending = true, descending = false;
+
+
+ascendingStairButton.onclick = () => {
+    ascending = true;
+    descending = false;
+    ascendingStairButton.style.background = 'lightgrey'
+    descendingStairButton.style.background = 'white'
+
+}
+
+descendingStairButton.onclick = () => {
+    ascending = false;
+    descending = true;
+    descendingStairButton.style.background = 'lightgrey'
+    ascendingStairButton.style.background = 'white'
+
+}
+
+
+
+</script>
+</html>

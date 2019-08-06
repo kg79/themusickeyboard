@@ -1,0 +1,365 @@
+<!doctype html>
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+        <style>
+            :root {
+                --main-bg-color: #03c9a8; 
+            }
+            body {
+                margin:0;
+                font-family:sans-serif;
+            }
+            main {
+                height:100vh;
+            } h1 {
+                font-family:'Dancing Script', cursive;
+                margin:0;
+                height:10vh;
+                display:flex;
+                flex-direction:column;
+                justify-content:center;
+                align-items:center;
+                background:var(--main-bg-color); 
+                color:black;
+                text-shadow:-2px -1px white;
+            } section {
+                background:var(--main-bg-color);
+                display:flex;
+                flex-direction:column;
+                justify-content:center;
+                align-items:center;
+            } article {
+                /* background:var(--main-bg-color); */
+                width:82%;
+                /*height:100%;*/
+                text-align:center;
+                margin:auto;
+                display:flex;
+                flex-direction:column;
+            } div {
+                height:10vh;
+                background:var(--main-bg-color);
+                /* background:white; */
+                display:flex;
+                justify-content:space-evenly;
+                align-items:center;
+
+            } p {
+                text-indent:3em;
+                background:white;
+                border-radius:1em;
+                line-height:1.5em;
+                text-align:left;
+            } 
+            @media only screen and (max-width: 768px) {
+                article {
+                    width:100%;
+                } p {
+                    margin:1vh;
+                    padding:1%;
+                }
+            }  @media only screen and (min-width: 768px) {
+                section {
+                    height:80vh;
+                } p {
+                    text-align:center;
+                    padding:.1%;
+                    margin:.7em;
+                }
+            }
+            a {
+                background:black;
+                padding:1%;
+                border-radius:1em;
+                height:1.2em;
+                color:var(--main-bg-color);
+                text-decoration-color:white;
+                border:solid .1em white;
+            }
+            table {
+                border-collapse:collapse;
+            }
+            td {
+                border:solid 1.5px black;
+                background:white;
+                width:5em;
+            } .title {
+                width:fit-content;
+                margin:auto;
+                text-align:center;
+                margin-top:.5em;
+                margin-bottom:.5em;
+                text-indent:0;
+                padding:.3em;
+            } .frequency > td{
+                background:#94ecde;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>zenofone</h1>
+            <section>
+                <article>
+                    <p>
+                        Zenofone means xenophone, or foreign sound instrument. It's purpose is to go beyond
+                         the scope of the western music system, or Twelve-Tone Equal Temperament. Rather than 12 
+                         averaged points within an octave, it is a harmonic system limited only by our perception, imagination, and processing power.
+                         Look at the diagrams.
+                    </p>
+
+                    <p class='title'>
+                        Twelve-Tone Equal Temperament
+                    </p>
+                        <table>
+                            <tr>
+                                <td>
+                                    Note Name
+                                </td>
+                                <td>
+                                    A
+                                </td>
+                                <td>
+                                    A#/Bb
+                                </td>
+                                <td>
+                                    B
+                                </td>
+                                <td>
+                                    C
+                                </td>
+                                <td>
+                                    C#/Db
+                                </td>
+                                <td>
+                                    D
+                                </td>
+                                <td>
+                                    D#/Eb
+                                </td>
+                                <td>
+                                    E
+                                </td>
+                                <td>
+                                    F
+                                </td>
+                                <td>
+                                    F#/Gb
+                                </td>
+                                <td>
+                                    G
+                                </td>
+                                <td>
+                                    G#/Ab
+                                </td>
+                                <td>
+                                    A
+                                </td>
+                            </tr>
+                            <tr class='frequency'>
+                                <td>
+                                    Frequency(hz)
+                                </td>
+                                <td>
+                                    440
+                                </td>
+                                <td>
+                                    466.16
+                                </td>
+                                <td>
+                                    493.88
+                                </td>
+                                <td>
+                                    523.25
+                                </td>
+                                <td>
+                                    554.37
+                                </td>
+                                <td>
+                                    587.33
+                                </td>
+                                <td>
+                                    622.25
+                                </td>
+                                <td>
+                                    659.25
+                                </td>
+                                <td>
+                                    698.46
+                                </td>
+                                <td>
+                                    739.99
+                                </td>
+                                <td>
+                                    783.99
+                                </td>
+                                <td>
+                                    830.61
+                                </td>
+                                <td>
+                                    880
+                                </td>
+                            </tr>
+                        </table>
+                        <p class='title'>
+                            Just Intonation
+                        </p>
+                        <table>
+                            <tr>
+                                <td>
+                                    Note Name
+                                </td>
+                                <td>
+                                    A
+                                </td>
+                                <td>
+                                    A#/Bb
+                                </td>
+                                <td>
+                                    B
+                                </td>
+                                <td>
+                                    C
+                                </td>
+                                <td>
+                                    C#/Db
+                                </td>
+                                <td>
+                                    D
+                                </td>
+                                <td>
+                                    D#/Eb
+                                </td>
+                                <td>
+                                    E
+                                </td>
+                                <td>
+                                    F
+                                </td>
+                                <td>
+                                    F#/Gb
+                                </td>
+                                <td>
+                                    G
+                                </td>
+                                <td>
+                                    G#/Ab
+                                </td>
+                                <td>
+                                    A
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Fraction 
+                                </td>
+                                <td>
+                                    1/1
+                                </td>
+                                <td>
+                                    16/15
+                                </td>
+                                <td>
+                                    9/8
+                                </td>
+                                <td>
+                                    6/5
+                                </td>
+                                <td>
+                                    5/4
+                                </td>
+                                <td>
+                                    4/3
+                                </td>
+                                <td>
+                                    7/5
+                                </td>
+                                <td>
+                                    3/2
+                                </td>
+                                <td>
+                                    8/5
+                                </td>
+                                <td>
+                                    5/3
+                                </td>
+                                <td>
+                                    16/9
+                                </td>
+                                <td>
+                                    15/8
+                                </td>
+                                <td>
+                                    2/1
+                                </td>
+                            </tr>
+                            <tr class='frequency'>
+                                <td>
+                                    Frequency(hz)
+                                </td>
+                                <td>
+                                    440
+                                </td>
+                                <td>
+                                    469.3333
+                                </td>
+                                <td>
+                                    495
+                                </td>
+                                <td>
+                                    528
+                                </td>
+                                <td>
+                                    550
+                                </td>
+                                <td>
+                                    586.6666
+                                </td>
+                                <td>
+                                    616
+                                </td>
+                                <td>
+                                    660
+                                </td>
+                                <td>
+                                    704
+                                </td>
+                                <td>
+                                    733.3333
+                                </td>
+                                <td>
+                                    782.2222
+                                </td>
+                                <td>
+                                    825
+                                </td>
+                                <td>
+                                    880
+                                </td>
+                            </tr>
+                        </table>
+                        <p>
+                            The first reflects the common music system(T-TET), and the second (JI) reflects the harmonics 
+                            they are based on. There are inherent discrepencies in Equal Temperament by definition, 
+                            and these exist for perceived or not perceived versatility. 
+                        </p>
+                        <!-- <p>
+                            With zenofone, you can generate vast quantities of harmonics and map them to the keyboard in real time. Roll over 
+                            the instructions on the bottom bar, and start making harmonic music!
+                        </p> -->
+                        <p>
+                            With zenofone, you can easily create <i>virtually</i> <u>any</u> music system, from the 
+                             Chromatic Scale, Major Scale, Pythagorean Scale, to a dynamic system that suits your needs. 
+                        </p>
+            </article>
+            </section>
+            <div>
+                <a href='/grid'>keyboard</a>
+                <a href='/touchscreen'>touch&nbsp;screen</a>
+                <a href='/test'>test</a>
+            </div>
+        </main>
+    </body>
+</html>
